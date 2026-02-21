@@ -1326,11 +1326,12 @@ SOFTWARE.
 
 ## 📞 Support
 
-- **Issues**: [GitHub Issues](https://github.com/<your-username>/RestApiGithub/issues)
-- **Discussions**: [GitHub Discussions](https://github.com/<your-username>/RestApiGithub/discussions)
+- **Issues**: [GitHub Issues](https://github.com/HermitPurple77/RestApiGithub/issues)
+- **Discussions**: [GitHub Discussions](https://github.com/HermitPurple77/RestApiGithub/discussions)
 
 ---
 
 <p align="center">
-  Made with ❤️ using Flask
+  Made with ❤️ using Flask77
 </p>
+
