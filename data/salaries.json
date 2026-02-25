@@ -1,0 +1,9 @@
+[
+    {
+      "SalaryID": 1,
+      "EmployeeID": 1,
+      "BasicSalary": 30000,
+      "Bonus": 5000,
+      "Allowances": 2000
+    }
+  ]
