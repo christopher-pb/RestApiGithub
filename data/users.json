@@ -4,5 +4,11 @@
     "username": "demo_admin",
     "password_hash": "scrypt:32768:8:1$2PUJ7GVJflvHAgjo$07b7cab4d36fec25ce217a93ea6d856f527e8087cdab11f33b661fc9528d23953227f2c205bf26e7103704c36bf2a472c4824b5609f144dd5d49d6cc32776b44",
     "role": "user"
+  },
+  {
+    "id": "c7ba4f65-8315-4f0f-8844-6b2f97d0f733",
+    "username": "abhi",
+    "password_hash": "scrypt:32768:8:1$pEuDW1nPRYleS1DV$8009d366afe9dd8f1d946328c850781963870b86bf7c649f86834f03fc19a5d063c1cb0382c21aaf07e598744fdd66c0fd3013be431ed69ba129bc8c94de1f16",
+    "role": "user"
   }
 ]
