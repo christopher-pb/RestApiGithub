@@ -1330,9 +1330,11 @@ SOFTWARE.
 - **Discussions**: [GitHub Discussions](https://github.com/<your-username>/RestApiGithub/discussions)
 
 ---
+
 //Assignment 1
 
 <p align="center">
   Made with ❤️ using Flask
 </p>
+
 
