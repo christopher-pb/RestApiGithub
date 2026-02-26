@@ -41,7 +41,7 @@ def list_students():
 def get_student(student_id):
     for student in students:
         if student["id"] == student_id:
-            return jsonify({"student": student}), 200
+            return jsonify(student), 200   # ✅ FIXED HERE
 
     return jsonify({"message": "Student not found"}), 404
 
@@ -56,7 +56,6 @@ def update_student(student_id):
             student["name"] = data.get("name", student["name"])
             student["email"] = data.get("email", student["email"])
             student["course"] = data.get("course", student["course"])
-
             return jsonify({"student": student}), 200
 
     return jsonify({"message": "Student not found"}), 404
