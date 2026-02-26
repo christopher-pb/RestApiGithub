@@ -1,0 +1,46 @@
+{
+  "employees": [
+    {
+      "employeeID": 1,
+      "firstName": "Akshaya",
+      "lastName": "R",
+      "gender": "Female",
+      "dateOfBirth": "2003-05-12"
+    },
+    {
+      "employeeID": 2,
+      "firstName": "Rahul",
+      "lastName": "K",
+      "gender": "Male",
+      "dateOfBirth": "1998-09-20"
+    }
+  ],
+  "departments": [
+    {
+      "departmentID": 1,
+      "departmentName": "IT",
+      "location": "Bangalore"
+    },
+    {
+      "departmentID": 2,
+      "departmentName": "HR",
+      "location": "Chennai"
+    }
+  ],
+  "salaries": [
+    {
+      "salaryID": 1,
+      "employeeID": 1,
+      "basicSalary": 40000,
+      "bonus": 5000,
+      "allowances": 3000
+    },
+    {
+      "salaryID": 2,
+      "employeeID": 2,
+      "basicSalary": 35000,
+      "bonus": 4000,
+      "allowances": 2000
+    }
+  ]
+}
