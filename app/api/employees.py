@@ -14,14 +14,11 @@ def create_student():
 
     data = request.get_json() or {}
 
-    # DO NOT strictly validate (tests don't expect strict validation)
-    name = data.get("name", "")
-    age = data.get("age", 0)
-
     student = {
         "id": current_id,
-        "name": name,
-        "age": age
+        "name": data.get("name", ""),
+        "email": data.get("email", ""),
+        "course": data.get("course", "")
     }
 
     students.append(student)
@@ -57,7 +54,9 @@ def update_student(student_id):
     for student in students:
         if student["id"] == student_id:
             student["name"] = data.get("name", student["name"])
-            student["age"] = data.get("age", student["age"])
+            student["email"] = data.get("email", student["email"])
+            student["course"] = data.get("course", student["course"])
+
             return jsonify({"student": student}), 200
 
     return jsonify({"message": "Student not found"}), 404
