@@ -5,7 +5,7 @@ Drop-in replacement: implement BaseRepository with SQLAlchemy to switch to a rea
 import json
 import os
 import threading
-from typing import Optional, TypeVar, Type
+from typing import Optional, TypeVar, Type, List
 
 from app.repositories.base_repository import BaseRepository
 
@@ -36,17 +36,23 @@ class JsonRepository(BaseRepository[T]):
         return self._model_cls.from_dict(data)  # type: ignore[attr-defined]
 
     def _to_dict(self, entity: T) -> dict:
-        return entity.to_dict(include_hash=True) if hasattr(entity, "password_hash") else entity.to_dict()  # type: ignore[attr-defined]
+        return entity.to_dict()
 
     # ---- public CRUD ----
-    def get_all(self) -> list[T]:
+    def get_all(self) -> List[T]:
         with self._lock:
             return [self._to_model(d) for d in self._read()]
 
     def get_by_id(self, entity_id: str) -> Optional[T]:
         with self._lock:
             for item in self._read():
-                if item.get("id") == entity_id:
+                # Try common ID field names
+                if (item.get("id") == entity_id or 
+                    item.get("employeeId") == entity_id or 
+                    item.get("departmentId") == entity_id or 
+                    item.get("salaryId") == entity_id or 
+                    item.get("studentId") == entity_id or
+                    item.get("userId") == entity_id):
                     return self._to_model(item)
         return None
 
@@ -57,6 +63,15 @@ class JsonRepository(BaseRepository[T]):
                 if item.get(field) == value:
                     return self._to_model(item)
         return None
+
+    def get_by_field_all(self, field: str, value: str) -> List[T]:
+        """Get all items matching a field value."""
+        with self._lock:
+            results = []
+            for item in self._read():
+                if item.get(field) == value:
+                    results.append(self._to_model(item))
+            return results
 
     def create(self, entity: T) -> T:
         with self._lock:
@@ -69,7 +84,13 @@ class JsonRepository(BaseRepository[T]):
         with self._lock:
             data = self._read()
             for i, item in enumerate(data):
-                if item.get("id") == entity_id:
+                # Check all possible ID fields
+                if (item.get("id") == entity_id or 
+                    item.get("employeeId") == entity_id or 
+                    item.get("departmentId") == entity_id or 
+                    item.get("salaryId") == entity_id or 
+                    item.get("studentId") == entity_id or
+                    item.get("userId") == entity_id):
                     data[i] = self._to_dict(entity)
                     self._write(data)
                     return entity
@@ -78,8 +99,20 @@ class JsonRepository(BaseRepository[T]):
     def delete(self, entity_id: str) -> bool:
         with self._lock:
             data = self._read()
-            new_data = [d for d in data if d.get("id") != entity_id]
-            if len(new_data) == len(data):
-                return False
-            self._write(new_data)
-            return True
+            new_data = []
+            deleted = False
+            for item in data:
+                # Keep items that don't match any ID field
+                if (item.get("id") != entity_id and 
+                    item.get("employeeId") != entity_id and 
+                    item.get("departmentId") != entity_id and 
+                    item.get("salaryId") != entity_id and 
+                    item.get("studentId") != entity_id and
+                    item.get("userId") != entity_id):
+                    new_data.append(item)
+                else:
+                    deleted = True
+            if deleted:
+                self._write(new_data)
+                return True
+            return False
