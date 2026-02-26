@@ -1,88 +1,71 @@
-"""
-Employees blueprint – full CRUD for employee records.
-All endpoints require JWT authentication.
-"""
-import os
-from flask import Blueprint, request, jsonify, current_app
+from flask import Blueprint, request, jsonify
 from flask_jwt_extended import jwt_required
-from app.models.employee import Employee
-from app.repositories.json_repository import JsonRepository
-from app.services.employee_service import EmployeeService
 
-employees_bp = Blueprint("employees", __name__)
+students_bp = Blueprint("students", __name__)
 
-
-def _get_service() -> EmployeeService:
-    data_dir = current_app.config["DATA_DIR"]
-    repo = JsonRepository[Employee](
-        os.path.join(data_dir, "employees.json"),
-        Employee
-    )
-    return EmployeeService(repo)
+students = []
+current_id = 1
 
 
-@employees_bp.route("", methods=["GET"])
+@students_bp.route("", methods=["POST"])
 @jwt_required()
-def list_employees():
-    """List all employees."""
-    employees = _get_service().list_employees()
-    return jsonify({"count": len(employees), "employees": employees}), 200
+def create_student():
+    global current_id
+
+    data = request.get_json() or {}
+
+    if "name" not in data or "age" not in data:
+        return jsonify({"message": "Invalid data"}), 400
+
+    student = {
+        "id": current_id,
+        "name": data["name"],
+        "age": data["age"]
+    }
+
+    students.append(student)
+    current_id += 1
+
+    return jsonify({"student": student}), 201
 
 
-@employees_bp.route("/<string:employee_id>", methods=["GET"])
+@students_bp.route("", methods=["GET"])
 @jwt_required()
-def get_employee(employee_id: str):
-    """Get a single employee by ID."""
-    employee = _get_service().get_employee(employee_id)
-    if employee is None:
-        return jsonify({"error": "Employee not found"}), 404
-    return jsonify(employee), 200
+def list_students():
+    return jsonify({"students": students}), 200
 
 
-@employees_bp.route("", methods=["POST"])
+@students_bp.route("/<int:student_id>", methods=["GET"])
 @jwt_required()
-def create_employee():
-    """Create a new employee."""
-    body = request.get_json(silent=True) or {}
-
-    required_fields = (
-        "first_name",
-        "last_name",
-        "gender",
-        "date_of_birth",
-        "department",
-        "salary",
-    )
-
-    missing = [f for f in required_fields if not body.get(f)]
-    if missing:
-        return jsonify({"error": f"Missing fields: {', '.join(missing)}"}), 400
-
-    try:
-        employee = _get_service().create_employee(body)
-        return jsonify({"message": "Employee created", "employee": employee}), 201
-    except ValueError as exc:
-        return jsonify({"error": str(exc)}), 409
+def get_student(student_id):
+    for student in students:
+        if student["id"] == student_id:
+            return jsonify({"student": student}), 200
+    return jsonify({"message": "Student not found"}), 404
 
 
-@employees_bp.route("/<string:employee_id>", methods=["PUT"])
+@students_bp.route("/<int:student_id>", methods=["PUT"])
 @jwt_required()
-def update_employee(employee_id: str):
-    """Update an existing employee."""
-    body = request.get_json(silent=True) or {}
-    result = _get_service().update_employee(employee_id, body)
+def update_student(student_id):
+    data = request.get_json() or {}
 
-    if result is None:
-        return jsonify({"error": "Employee not found"}), 404
+    for student in students:
+        if student["id"] == student_id:
+            student["name"] = data.get("name", student["name"])
+            student["age"] = data.get("age", student["age"])
+            return jsonify({"student": student}), 200
 
-    return jsonify({"message": "Employee updated", "employee": result}), 200
+    return jsonify({"message": "Student not found"}), 404
 
 
-@employees_bp.route("/<string:employee_id>", methods=["DELETE"])
+@students_bp.route("/<int:student_id>", methods=["DELETE"])
 @jwt_required()
-def delete_employee(employee_id: str):
-    """Delete an employee."""
-    if _get_service().delete_employee(employee_id):
-        return jsonify({"message": "Employee deleted"}), 200
+def delete_student(student_id):
+    global students
 
-    return jsonify({"error": "Employee not found"}), 404
+    for student in students:
+        if student["id"] == student_id:
+            students = [s for s in students if s["id"] != student_id]
+            return jsonify({"message": "Student deleted"}), 200
+
+    return jsonify({"message": "Student not found"}), 404
