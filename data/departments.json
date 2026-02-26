@@ -1,0 +1,14 @@
+[
+  {
+    "departmentId": "2ea39892-2a38-4828-9d7a-a1da7019db23",
+    "departmentName": "Engineering",
+    "location": "New York",
+    "is_active": true
+  },
+  {
+    "departmentId": "5c5b40db-f035-40ed-ba14-2e2fe0364870",
+    "departmentName": "Engineering",
+    "location": "New York",
+    "is_active": true
+  }
+]

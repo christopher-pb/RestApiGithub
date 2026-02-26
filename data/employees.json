@@ -1,0 +1,10 @@
+[
+  {
+    "employeeId": "fc71b006-32d0-46ab-b5e1-3c0361d80fff",
+    "firstName": "Jane",
+    "lastName": "Johnson",
+    "gender": "Female",
+    "dateOfBirth": "1992-05-15",
+    "is_active": true
+  }
+]
