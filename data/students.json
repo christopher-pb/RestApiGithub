@@ -9,3 +9,23 @@
     "is_active": true
   }
 ]
+[
+  {
+    "id": "82f897e1-4629-4578-910a-4f29d96f15af",
+    "first_name": "Bob",
+    "last_name": "Jones",
+    "email": "bob@university.com",
+    "course": "Mathematics",
+    "enrollment_date": "2026-02-13T15:08:16.248742+00:00",
+    "is_active": true
+  },
+  {
+    "id": "82f897e1-4629-4578-910a-4f29d96f16af",
+    "first_name": "Santhosh",
+    "last_name": "C",
+    "email": "santhosh@university.com",
+    "course": "Computer Science",
+    "enrollment_date": "2026-02-26T10:00:00+00:00",
+    "is_active": true
+  }
+]
