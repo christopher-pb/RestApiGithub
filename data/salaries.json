@@ -1,0 +1,9 @@
+[
+  {
+    "salary_id": "72b0fd52-f0bb-4216-83a4-79b727fb8f38",
+    "employee_id": "0dd0d82c-f168-4b66-a5af-a2eac1750e53",
+    "basic_salary": 50000.0,
+    "bonus": 5000.0,
+    "allowances": 2000.0
+  }
+]

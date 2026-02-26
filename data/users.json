@@ -10,5 +10,11 @@
     "username": "abhi",
     "password_hash": "scrypt:32768:8:1$pEuDW1nPRYleS1DV$8009d366afe9dd8f1d946328c850781963870b86bf7c649f86834f03fc19a5d063c1cb0382c21aaf07e598744fdd66c0fd3013be431ed69ba129bc8c94de1f16",
     "role": "user"
+  },
+  {
+    "id": "5d24c95d-ac86-4713-acb3-f322f5552609",
+    "username": "admin",
+    "password_hash": "scrypt:32768:8:1$0mQLxtciJjAkvx3u$7fa16c1ecd492b8a3747e6c7dddc88cd1ba9ba3465fd43a8c41d4e31cf9125808bc68c277773d6888c7f8aaea835dca90b3250628ef9d2dd98bf67e1b090407b",
+    "role": "admin"
   }
 ]
