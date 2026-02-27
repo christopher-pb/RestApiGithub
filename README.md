@@ -6,7 +6,7 @@
 [![Docker](https://img.shields.io/badge/Docker-Ready-2496ED?logo=docker&logoColor=white)](https://www.docker.com/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-A **production-ready** Flask REST API featuring **JWT authentication**, comprehensive **Student CRUD operations**, and a clean **Repository Pattern** architecture designed for seamless extensibility from JSON file storage to any database backend.
+A   **production-ready** Flask REST API featuring **JWT authentication**, comprehensive **Student CRUD operations**, and a clean **Repository Pattern** architecture designed for seamless extensibility from JSON file storage to any database backend.
 
 Built with industry-standard patterns: **Application Factory**, **Blueprints**, **Service Layer**, **Repository Abstraction**, **Docker**, and **GitHub Actions CI/CD**.
 
