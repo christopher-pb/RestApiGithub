@@ -1,0 +1,13 @@
+[
+    {
+        "employee_id": "E001",
+        "first_name": "Shachi",
+        "last_name": "Priya",
+        "gender": "Female",
+        "date_of_birth": "2004-01-01",
+        "department": "IT",
+        "basic_salary": 50000,
+        "bonus": 5000,
+        "allowances": 2000
+    }
+]
