@@ -1,6 +1,7 @@
 """
 Flask REST API Application Factory.
 """
+
 from flask import Flask
 from app.extensions import jwt
 from app.config import config_by_name
@@ -8,22 +9,50 @@ from app.config import config_by_name
 
 def create_app(config_name: str = "development") -> Flask:
     """Application factory pattern."""
+
     app = Flask(__name__)
     app.config.from_object(config_by_name[config_name])
 
-    # Initialize extensions
+    # -----------------------------
+    # Initialize Extensions
+    # -----------------------------
     jwt.init_app(app)
 
-    # Register blueprints
+    # -----------------------------
+    # Register Blueprints
+    # -----------------------------
     from app.api.auth import auth_bp
     from app.api.students import students_bp
+    from app.api.employees import employees_bp
     from app.api.health import health_bp
 
-    app.register_blueprint(health_bp, url_prefix="/api/v1")
-    app.register_blueprint(auth_bp, url_prefix="/api/v1/auth")
-    app.register_blueprint(students_bp, url_prefix="/api/v1/students")
+    # Health Check
+    app.register_blueprint(
+        health_bp,
+        url_prefix="/api/v1"
+    )
 
-    # Register error handlers
+    # Authentication APIs
+    app.register_blueprint(
+        auth_bp,
+        url_prefix="/api/v1/auth"
+    )
+
+    # Students APIs
+    app.register_blueprint(
+        students_bp,
+        url_prefix="/api/v1/students"
+    )
+
+    # Employees APIs ✅ (NEW)
+    app.register_blueprint(
+        employees_bp,
+        url_prefix="/api/v1/employees"
+    )
+
+    # -----------------------------
+    # Register Error Handlers
+    # -----------------------------
     from app.errors import register_error_handlers
     register_error_handlers(app)
 
