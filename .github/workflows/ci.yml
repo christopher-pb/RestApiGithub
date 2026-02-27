@@ -1,4 +1,4 @@
-name: CI – Test, Lint, Build & Package
+name: CI - Test, Lint, Build & Package
 
 on:
 push:
@@ -10,12 +10,6 @@ env:
 PYTHON_VERSION: "3.12"
 
 jobs:
-
-# ─────────────────────────────
-
-# LINT JOB
-
-# ─────────────────────────────
 
 lint:
 name: Lint
@@ -37,12 +31,6 @@ steps:
       pip install -r requirements.txt
 ```
 
-# ─────────────────────────────
-
-# TEST JOB
-
-# ─────────────────────────────
-
 test:
 name: Test
 runs-on: ubuntu-latest
@@ -63,26 +51,20 @@ steps:
       python -m pip install --upgrade pip
       pip install -r requirements.txt
 
-  - name: Run pytest with coverage
+  - name: Run pytest
     run: |
       pytest --cov=app --cov-report=xml --cov-report=term-missing
 
-  - name: Upload coverage report
-    uses: actions/upload-artifact@v4
+  - name: Upload coverage
     if: always()
+    uses: actions/upload-artifact@v4
     with:
       name: coverage-report
       path: coverage.xml
 ```
 
-# ─────────────────────────────
-
-# BUILD ZIP JOB
-
-# ─────────────────────────────
-
 build:
-name: Build & Package Zip
+name: Build Zip
 runs-on: ubuntu-latest
 needs: test
 
@@ -96,31 +78,24 @@ steps:
     with:
       python-version: ${{ env.PYTHON_VERSION }}
 
-  - name: Install dependencies into dist folder
+  - name: Create package
     run: |
       mkdir -p dist/app_package
-      pip install --no-cache-dir -r requirements.txt --target dist/app_package/vendor
+      pip install -r requirements.txt --target dist/app_package/vendor
       cp -r app dist/app_package/
-      cp run.py wsgi.py requirements.txt dist/app_package/
+      cp run.py requirements.txt dist/app_package/
 
-  - name: Create ZIP package
+  - name: Zip package
     run: |
       cd dist
-      zip -r ../employee-api-${{ github.sha }}.zip app_package/
+      zip -r ../employee-api.zip app_package/
 
-  - name: Upload ZIP artifact
+  - name: Upload zip
     uses: actions/upload-artifact@v4
     with:
       name: employee-api-package
-      path: employee-api-*.zip
-      retention-days: 30
+      path: employee-api.zip
 ```
-
-# ─────────────────────────────
-
-# DOCKER JOB
-
-# ─────────────────────────────
 
 docker:
 name: Docker Build & Test
@@ -132,30 +107,21 @@ steps:
   - name: Checkout repository
     uses: actions/checkout@v4
 
-  - name: Setup Docker Buildx
-    uses: docker/setup-buildx-action@v3
-
   - name: Build Docker image
     run: |
-      docker build -t employee-api:${{ github.sha }} .
       docker build -t employee-api:latest .
 
-  - name: Run Docker container
+  - name: Run container
     run: |
-      docker run -d --name test-api -p 5000:5000 \
-      -e SECRET_KEY=ci-secret \
-      -e JWT_SECRET_KEY=ci-jwt-secret \
-      employee-api:latest
+      docker run -d -p 5000:5000 --name test-api employee-api:latest
 
-  - name: Wait for container startup
-    run: sleep 8
+  - name: Wait for startup
+    run: sleep 10
 
-  - name: Test health endpoint (FIXED)
+  - name: Test API health
     run: |
       curl -f http://localhost:5000/health
 
   - name: Stop container
-    run: |
-      docker stop test-api
-      docker rm test-api
+    run: docker stop test-api
 ```
