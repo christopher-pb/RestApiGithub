@@ -1,4 +1,3 @@
-Assignment-1 submission by Abhinaya
 
 # 🎓 Student REST API
 
@@ -1336,4 +1335,5 @@ SOFTWARE.
 <p align="center">
   Made with ❤️ using Flask
 </p>
+
 
