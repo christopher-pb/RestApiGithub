@@ -1,98 +1,33 @@
-import os
-from flask import Blueprint, request, jsonify, current_app
-from app.models.salary import Salary
-from app.models.employee import Employee
-from app.repositories.json_repository import JsonRepository
-from app.services.salary_service import SalaryService
-
+from flask import Blueprint, jsonify, request
+import json
 
 salary_bp = Blueprint("salary", __name__)
 
-
-def get_service():
-
-    data_dir = current_app.config["DATA_DIR"]
-
-    salary_repo = JsonRepository(
-        os.path.join(data_dir, "salaries.json"),
-        Salary,
-    )
-
-    employee_repo = JsonRepository(
-        os.path.join(data_dir, "employees.json"),
-        Employee,
-    )
-
-    return SalaryService(salary_repo, employee_repo)
+FILE = "data/salaries.json"
 
 
-# ----------------------------
-# CREATE
-# ----------------------------
-@salary_bp.route("/", methods=["POST"])
-def create_salary():
-    service = get_service()
-
+def read_data():
     try:
-        result = service.create_salary(request.json)
-        return jsonify({
-            "message": "Salary created",
-            "salary": result
-        }), 201
-
-    except ValueError as e:
-        return jsonify({"error": str(e)}), 400
+        with open(FILE, "r") as f:
+            return json.load(f)
+    except:
+        return []
 
 
-# ----------------------------
-# LIST
-# ----------------------------
-@salary_bp.route("/", methods=["GET"])
-def list_salaries():
-    service = get_service()
-    return jsonify(service.list_salaries())
+def write_data(data):
+    with open(FILE, "w") as f:
+        json.dump(data, f, indent=4)
 
 
-# ----------------------------
-# GET
-# ----------------------------
-@salary_bp.route("/<salary_id>", methods=["GET"])
-def get_salary(salary_id):
-    service = get_service()
-    salary = service.get_salary(salary_id)
-
-    if not salary:
-        return jsonify({"error": "Salary not found"}), 404
-
-    return jsonify(salary)
+@salary_bp.route("/salaries", methods=["GET"])
+def get_salaries():
+    return jsonify(read_data())
 
 
-# ----------------------------
-# UPDATE
-# ----------------------------
-@salary_bp.route("/<salary_id>", methods=["PUT"])
-def update_salary(salary_id):
-    service = get_service()
-    salary = service.update_salary(salary_id, request.json)
-
-    if not salary:
-        return jsonify({"error": "Salary not found"}), 404
-
-    return jsonify({
-        "message": "Salary updated",
-        "salary": salary
-    })
-
-
-# ----------------------------
-# DELETE
-# ----------------------------
-@salary_bp.route("/<salary_id>", methods=["DELETE"])
-def delete_salary(salary_id):
-    service = get_service()
-    success = service.delete_salary(salary_id)
-
-    if not success:
-        return jsonify({"error": "Salary not found"}), 404
-
-    return jsonify({"message": "Salary deleted"})
+@salary_bp.route("/salaries", methods=["POST"])
+def add_salary():
+    salaries = read_data()
+    new_salary = request.json
+    salaries.append(new_salary)
+    write_data(salaries)
+    return jsonify(new_salary), 201

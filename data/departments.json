@@ -1,7 +1,12 @@
 [
   {
-    "department_id": "6effcb2a-7f1a-46d2-b7bd-2510c5a52119",
+    "department_id": 101,
     "department_name": "IT",
+    "location": "Bangalore"
+  },
+  {
+    "department_id": 102,
+    "department_name": "HR",
     "location": "Chennai"
   }
 ]

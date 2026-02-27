@@ -1,55 +1,33 @@
-from flask import Blueprint, request, jsonify
-from app.services.department_service import DepartmentService
+from flask import Blueprint, jsonify, request
+import json
 
-departments_bp = Blueprint("departments", __name__)
+department_bp = Blueprint("department", __name__)
+
+FILE = "data/departments.json"
 
 
-@departments_bp.route("/", methods=["POST"])
-def create_department():
-    service = DepartmentService()
+def read_data():
     try:
-        data = request.get_json()
-        department = service.create_department(data)
-        return jsonify({
-            "message": "Department created",
-            "department": department
-        }), 201
-    except ValueError as e:
-        return jsonify({"error": str(e)}), 400
+        with open(FILE, "r") as f:
+            return json.load(f)
+    except:
+        return []
 
 
-@departments_bp.route("/", methods=["GET"])
-def get_all_departments():
-    service = DepartmentService()
-    return jsonify(service.get_all_departments()), 200
+def write_data(data):
+    with open(FILE, "w") as f:
+        json.dump(data, f, indent=4)
 
 
-@departments_bp.route("/<department_id>", methods=["GET"])
-def get_department(department_id):
-    service = DepartmentService()
-    department = service.get_department_by_id(department_id)
-    if not department:
-        return jsonify({"error": "Department not found"}), 404
-    return jsonify(department), 200
+@department_bp.route("/departments", methods=["GET"])
+def get_departments():
+    return jsonify(read_data())
 
 
-@departments_bp.route("/<department_id>", methods=["PUT"])
-def update_department(department_id):
-    service = DepartmentService()
-    data = request.get_json()
-    updated = service.update_department(department_id, data)
-    if not updated:
-        return jsonify({"error": "Department not found"}), 404
-    return jsonify({
-        "message": "Department updated",
-        "department": updated
-    }), 200
-
-
-@departments_bp.route("/<department_id>", methods=["DELETE"])
-def delete_department(department_id):
-    service = DepartmentService()
-    deleted = service.delete_department(department_id)
-    if not deleted:
-        return jsonify({"error": "Department not found"}), 404
-    return jsonify({"message": "Department deleted"}), 200
+@department_bp.route("/departments", methods=["POST"])
+def add_department():
+    departments = read_data()
+    new_department = request.json
+    departments.append(new_department)
+    write_data(departments)
+    return jsonify(new_department), 201
