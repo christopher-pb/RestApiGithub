@@ -8,7 +8,7 @@
 
 A **production-ready** Flask REST API featuring **JWT authentication**, comprehensive **Student CRUD operations**, and a clean **Repository Pattern** architecture designed for seamless extensibility from JSON file storage to any database backend.
 
-Built with industry-standard patterns: **Application Factory**, **Blueprints**, **Service Layer**, **Repository Abstraction**, **Docker**, and **GitHub Actions CI/CD**. Assignment-1 submission by Melvyn
+Built with industry-standard patterns: **Application Factory**, **Blueprints**, **Service Layer**, **Repository Abstraction**, **Docker**, and **GitHub Actions CI/CD**. **Assignment-1 submission by Melvyn**
 
 ---
 
@@ -1334,4 +1334,5 @@ SOFTWARE.
 <p align="center">
   Made with ❤️ using Flask
 </p>
+
 
