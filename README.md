@@ -1,6 +1,6 @@
 # 🎓 Student REST API
 #23BCNB06_Alakananda M
-#changes made
+#updated
 
 
 [![Python](https://img.shields.io/badge/Python-3.10%2B-blue?logo=python&logoColor=white)](https://python.org)
@@ -1337,4 +1337,5 @@ SOFTWARE.
 <p align="center">
   Made with ❤️ using Flask
 </p>
+
 
