@@ -1,0 +1,16 @@
+[
+  {
+    "salary_id": 1,
+    "employee_id": 1,
+    "basic_salary": 50000,
+    "bonus": 5000,
+    "allowances": 2000
+  },
+  {
+    "salary_id": 2,
+    "employee_id": 2,
+    "basic_salary": 40000,
+    "bonus": 3000,
+    "allowances": 1500
+  }
+]
