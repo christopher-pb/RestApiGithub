@@ -1,4 +1,4 @@
-# 🎓 Employee REST API
+# 🎓 Employees REST API
 
 [![Python](https://img.shields.io/badge/Python-3.10%2B-blue?logo=python&logoColor=white)](https://python.org)
 [![Flask](https://img.shields.io/badge/Flask-3.1-green?logo=flask&logoColor=white)](https://flask.palletsprojects.com/)
@@ -1334,4 +1334,5 @@ SOFTWARE.
 <p align="center">
   Made with ❤️ using Flask
 </p>
+
 
