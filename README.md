@@ -1332,5 +1332,6 @@ SOFTWARE.
 ---
 
 <p align="center">
-  Made with ❤️ using Flask
+Made with ❤️ using Flask
+Assignment 1 by D
 </p>
