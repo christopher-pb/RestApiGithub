@@ -1328,9 +1328,11 @@ SOFTWARE.
 
 - **Issues**: [GitHub Issues](https://github.com/<your-username>/RestApiGithub/issues)
 - **Discussions**: [GitHub Discussions](https://github.com/<your-username>/RestApiGithub/discussions)
+- Updated by Shachi Priya for DevOps Assignment 1
 
 ---
 
 <p align="center">
   Made with ❤️ using Flask
 </p>
+
