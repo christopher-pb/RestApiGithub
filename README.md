@@ -1,4 +1,4 @@
-Assignment completed by Jokim
+Assignment completed by Jokim PRATHAP A
 **#Assignment 1 completed **
 # 🎓 Student REST API
 
