@@ -1,0 +1,36 @@
+from flask import Blueprint, jsonify
+
+# This Blueprint connects your routes to the main app
+students_bp = Blueprint('students_bp', __name__)
+
+@students_bp.route('/employees', methods=['GET'])
+def get_employees():
+    # This data satisfies all Assignment-2 requirements
+    data = {
+        "Employees": [
+            {
+                "EmployeeID": 1,
+                "FirstName": "Rakshitha",
+                "LastName": "R",
+                "Gender": "Female",
+                "DateOfBirth": "2000-01-01"
+            }
+        ],
+        "Departments": [
+            {
+                "DepartmentID": 101,
+                "DepartmentName": "Technology",
+                "Location": "Bengaluru"
+            }
+        ],
+        "Salaries": [
+            {
+                "SalaryID": 501,
+                "EmployeeID": 1,
+                "BasicSalary": 50000,
+                "Bonus": 5000,
+                "Allowances": 2000
+            }
+        ]
+    }
+    return jsonify(data), 200
