@@ -1,4 +1,4 @@
-
+1
 # 🎓 Student REST API
 
 [![Python](https://img.shields.io/badge/Python-3.10%2B-blue?logo=python&logoColor=white)](https://python.org)
