@@ -1,0 +1,17 @@
+[
+  {
+    "DepartmentID": "DEPT_DEV",
+    "DepartmentName": "DevOps Engineering",
+    "Location": "Bengaluru"
+  },
+  {
+    "DepartmentID": "DEPT_HR",
+    "DepartmentName": "Human Resources",
+    "Location": "Mumbai"
+  },
+  {
+    "DepartmentID": "DEPT_DEV",
+    "DepartmentName": "Latin",
+    "Location": "Bengaluru"
+  }
+]

@@ -1,0 +1,19 @@
+[
+  {
+    "DepartmentID": "DEPT_DEV",
+    "DepartmentName": "DevOps Engineering",
+    "Location": "Bengaluru"
+  },
+  {
+    "DepartmentID": "DEPT_HR",
+    "DepartmentName": "Human Resources",
+    "Location": "Mumbai"
+  },
+  {
+    "SalaryID": "SAL_006",
+    "EmployeeID": "EMP108",
+    "BasicSalary": 67000,
+    "Bonus": 5000,
+    "Allowances": 3000
+  }
+]
