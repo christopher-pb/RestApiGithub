@@ -1,8 +1,0 @@
-[
-  {
-    "id": "4708a9b2-9585-4a86-b01e-58a5efa2dada",
-    "username": "demo_admin",
-    "password_hash": "scrypt:32768:8:1$2PUJ7GVJflvHAgjo$07b7cab4d36fec25ce217a93ea6d856f527e8087cdab11f33b661fc9528d23953227f2c205bf26e7103704c36bf2a472c4824b5609f144dd5d49d6cc32776b44",
-    "role": "user"
-  }
-]
