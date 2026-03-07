@@ -2,7 +2,7 @@ name: CI – Test, Lint, Build & Package
 
 on:
   push:
-    branches: [main, develop]
+    branches: [main, Abhijit/Login-Feature, develop]
   pull_request:
     branches: [main]
 
