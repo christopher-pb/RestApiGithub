@@ -1,0 +1,23 @@
+[
+  {
+    "EmployeeID": "EMP001",
+    "FirstName": "Abhijit",
+    "LastName": "Sudheer",
+    "Gender": "Male",
+    "DateOfBirth": "2005-09-17"
+  },
+  {
+    "EmployeeID": "EMP002",
+    "FirstName": "John",
+    "LastName": "Doe",
+    "Gender": "Male",
+    "DateOfBirth": "1995-10-20"
+  },
+  {
+    "EmployeeID": "EMP101",
+    "FirstName": "Abhijit",
+    "LastName": "Sudheer",
+    "Gender": "Male",
+    "DateOfBirth": "2005-09-17"
+  }
+]
