@@ -11,5 +11,6 @@ def register_blueprints(app):
     app.register_blueprint(employee_bp, url_prefix="/employees")
     app.register_blueprint(department_bp, url_prefix="/departments")
     app.register_blueprint(salary_bp, url_prefix="/salaries")
-    api.register_blueprint(students_bp)
+    app.register_blueprint(students_bp)
+
 
