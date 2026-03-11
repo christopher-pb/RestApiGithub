@@ -1208,7 +1208,7 @@ export FLASK_DEBUG=1
 python run.py
 ```
 
----
+--- Student REST API Assignment - Suneri
 
 ## 🤝 Contributing
 
@@ -1333,4 +1333,4 @@ SOFTWARE.
 
 <p align="center">
   Made with ❤️ using Flask
-</p>
+</p> 
