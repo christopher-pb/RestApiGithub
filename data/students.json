@@ -7,5 +7,14 @@
     "course": "Mathematics",
     "enrollment_date": "2026-02-13T15:08:16.248742+00:00",
     "is_active": true
+  },
+  {
+    "id": "53f20365-f0fa-4ac4-9a81-f5098ce2e7ee",
+    "first_name": "Alice",
+    "last_name": "Smith",
+    "email": "alice@example.com",
+    "course": "CS",
+    "enrollment_date": "2026-03-16T08:57:06.868866+00:00",
+    "is_active": true
   }
 ]
