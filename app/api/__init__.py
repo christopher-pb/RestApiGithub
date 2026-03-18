@@ -1,7 +1,24 @@
-from flask import Flask
-from app.api.employee import employee_bp  # singular, matches employee.py
+from flask import Blueprint, jsonify
+import json
 
-def create_app():
-    app = Flask(__name__)
-    app.register_blueprint(employee_bp, url_prefix="/api")
-    return app
+bp = Blueprint('employees', __name__)
+
+@bp.route('/employees', methods=['GET'])
+def get_employees():
+    with open('data/employees.json') as f:
+        employees = json.load(f)
+    return jsonify(employees)
+
+
+@bp.route('/departments', methods=['GET'])
+def get_departments():
+    with open('data/departments.json') as f:
+        departments = json.load(f)
+    return jsonify(departments)
+
+
+@bp.route('/salaries', methods=['GET'])
+def get_salaries():
+    with open('data/salaries.json') as f:
+        salaries = json.load(f)
+    return jsonify(salaries)
