@@ -1,0 +1,12 @@
+[
+  {
+    "DepartmentID": 1,
+    "DepartmentName": "IT",
+    "Location": "Bangalore"
+  },
+  {
+    "DepartmentID": 2,
+    "DepartmentName": "HR",
+    "Location": "Mumbai"
+  }
+]
