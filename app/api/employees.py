@@ -1,6 +1,7 @@
 import json
 from flask import Blueprint, request, jsonify
 
+# ✅ DEFINE FIRST
 employees_bp = Blueprint('employees', __name__)
 
 DATA_FILE = 'data/employees.json'
@@ -13,11 +14,13 @@ def write_data(data):
     with open(DATA_FILE, 'w') as f:
         json.dump(data, f, indent=4)
 
-@employees_bp.route('/employees', methods=['GET'])
+# ✅ GET all
+@employees_bp.route('/', methods=['GET'])
 def get_employees():
     return jsonify(read_data())
 
-@employees_bp.route('/employees', methods=['GET'])
+# ✅ GET one
+@employees_bp.route('/<int:id>', methods=['GET'])
 def get_employee(id):
     employees = read_data()
     emp = next((e for e in employees if e['EmployeeID'] == id), None)
@@ -25,7 +28,8 @@ def get_employee(id):
         return jsonify(emp)
     return {"message": "Employee not found"}, 404
 
-@employees_bp.route('/employees', methods=['POST'])
+# ✅ POST
+@employees_bp.route('/', methods=['POST'])
 def add_employee():
     employees = read_data()
     new_emp = request.json
@@ -33,7 +37,8 @@ def add_employee():
     write_data(employees)
     return jsonify(new_emp), 201
 
-@employees_bp.route('/employees/<int:id>', methods=['PUT'])
+# ✅ PUT
+@employees_bp.route('/<int:id>', methods=['PUT'])
 def update_employee(id):
     employees = read_data()
     for emp in employees:
@@ -43,7 +48,8 @@ def update_employee(id):
             return jsonify(emp)
     return {"message": "Employee not found"}, 404
 
-@employees_bp.route('/employees/<int:id>', methods=['DELETE'])
+# ✅ DELETE
+@employees_bp.route('/<int:id>', methods=['DELETE'])
 def delete_employee(id):
     employees = read_data()
     employees = [e for e in employees if e['EmployeeID'] != id]
