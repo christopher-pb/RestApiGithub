@@ -205,16 +205,8 @@ Client Request
 ---
 
 ## 🚀 Getting Started
+hijbj
 
-### Prerequisites
-
-| Requirement | Version | Required |
-|-------------|---------|----------|
-| Python | 3.10 or higher | ✅ Yes |
-| pip | Latest | ✅ Yes |
-| Docker | Latest | ⚡ Optional |
-| Docker Compose | v2+ | ⚡ Optional |
-| Git | Latest | ⚡ Optional |
 
 ### 1. Local Development
 
