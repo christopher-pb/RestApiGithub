@@ -1,0 +1,22 @@
+{
+  "Employees":[
+     {
+       "EmployeeID":1, 
+      "FirstName":"john",
+      "LastName":"doe",
+       "Gender":"male", 
+      "DateOfBirth":"1998-05-10",
+      "Department":{ 
+      "DepartmentID":101, 
+      "DepartmentName":"IT",
+      "Location":"bangalore"
+      },
+      "Salaries":{
+      "SalaryID":1001, 
+      "BasicSalary":50000,
+      "Bonus":5000,
+      "Allowances":2000
+      }
+    }
+    ]
+  }
